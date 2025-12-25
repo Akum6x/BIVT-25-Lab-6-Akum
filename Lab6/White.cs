@@ -1,13 +1,8 @@
-using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Lab6
 {
-    public delegate void Sorting(int[,] matrix);
-    public delegate double BikeRide(double v, double a);
-    public delegate void Swapper(double[] array);
-    public delegate int Func(int[][] array);
-
     public class White
     {
         public void Task1(double[] A, double[] B)
@@ -65,7 +60,6 @@ namespace Lab6
 
             return maxRow;
         }
-
         public void Task2(int[,] A, int[,] B)
         {
             if (A.GetLength(0) != B.GetLength(0) || A.GetLength(1) != B.GetLength(1))
@@ -103,6 +97,8 @@ namespace Lab6
 
         public int Task3(int[,] matrix)
         {
+            int answer = 0;
+
             int[] negativeCounts = GetNegativeCountPerRow(matrix);
 
             int maxIndex = 0;
@@ -113,11 +109,11 @@ namespace Lab6
                 if (negativeCounts[i] > maxCount)
                 {
                     maxCount = negativeCounts[i];
-                    maxIndex = i;
+                    answer = i;
                 }
             }
 
-            return maxIndex;
+            return answer;
         }
 
         public int FindMax(int[,] matrix, out int row, out int col)
@@ -164,7 +160,6 @@ namespace Lab6
                 B[i, colIndexB] = temp;
             }
         }
-
         public void Task5(int[,] A, int[,] B)
         {
             int rowA, colA, rowB, colB;
@@ -241,15 +236,18 @@ namespace Lab6
             if (n <= 1) return 1;
             return n * Factorial(n - 1);
         }
-
         public long Task7(int n, int k)
         {
+            long answer = 0;
+
             if (k > n || n < 0 || k < 0) return 0;
 
             long numerator = Factorial(n);
             long denominator = Factorial(k) * Factorial(n - k);
 
-            return numerator / denominator;
+            answer = numerator / denominator;
+
+            return answer;
         }
 
         public double GetDistance(double v, double a)
@@ -284,10 +282,13 @@ namespace Lab6
 
             return hours;
         }
-
         public double Task8(double v, double a, BikeRide ride)
         {
-            return ride(v, a);
+            double answer = 0;
+
+            answer = ride(v, a);
+
+            return answer;
         }
 
         public double Sum(double[] array)
@@ -319,7 +320,6 @@ namespace Lab6
                 array[i - 1] = temp;
             }
         }
-
         public int Task9(int[][] array)
         {
             if (array.Length % 2 == 0)
@@ -355,15 +355,15 @@ namespace Lab6
 
         public int CountPositive(int[][] array)
         {
-            int count = 0;
+            int answer = 0;
             foreach (var subArray in array)
             {
                 foreach (var item in subArray)
                 {
-                    if (item > 0) count++;
+                    if (item > 0) answer++;
                 }
             }
-            return count;
+            return answer;
         }
 
         public int FindMaxInJaggedArray(int[][] array)
@@ -389,10 +389,13 @@ namespace Lab6
             }
             return maxLength;
         }
-
         public int Task10(int[][] array, Func<int[][], int> func)
         {
-            return func(array);
+            int answer = 0;
+
+            answer = func(array);
+
+            return answer;
         }
     }
 }
